@@ -6,4 +6,20 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\product.common\product.common.csproj" />
+    <ProjectReference Include="..\product.handler\product.handler.csproj" />
+    <ProjectReference Include="..\product.internalservices\product.internalservices.csproj" />
+    <ProjectReference Include="..\product.redis\product.redis.csproj" />
+    <ProjectReference Include="..\product.requestvalidator\product.requestvalidator.csproj" />
+    <ProjectReference Include="..\product.secretsmanager\product.secretsmanager.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\product.application\product.application.csproj" />
+    <ProjectReference Include="..\product.common\product.common.csproj" />
+    <ProjectReference Include="..\product.data\product.data.csproj" />
+    <ProjectReference Include="..\product.dto\product.dto.csproj" />
+    <ProjectReference Include="..\product.request\product.request.csproj" />
+  </ItemGroup>
+
 </Project>
