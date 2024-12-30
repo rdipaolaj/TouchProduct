@@ -27,6 +27,7 @@ builder.Services.AddApiVersioningConfiguration();
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddDataServicesConfiguration();
+builder.Services.AddCustomJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -40,6 +41,7 @@ if (app.Environment.IsDevelopment())
 app.AddSecurityHeaders();
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseExceptionHandler();
 app.MapControllers();

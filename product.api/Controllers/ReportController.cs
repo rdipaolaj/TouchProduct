@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using product.api.Configuration;
 using product.common.Responses;
@@ -25,6 +26,7 @@ public class ReportController : CustomController
     [HttpGet]
     [Route("generate-product-report")]
     [MapToApiVersion(1)]
+    [Authorize]
     [ProducesResponseType(typeof(ApiResponse<GenerateProductReportResponse>), 200)]
     public async Task<IActionResult> GenerateProductReport()
     {

@@ -10,4 +10,5 @@ public class SecretManagerSettings
     public string ArnPostgresSecrets { get; set; } = string.Empty;
     public string ArnRedisSecrets { get; set; } = string.Empty;
     public string ArnEmailSecrets { get; set; } = string.Empty;
+    public string ArnJwtSecrets { get; set; } = string.Empty;
 }

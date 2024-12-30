@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using product.api.Configuration;
 using product.request.Commands.v1.Notification;
@@ -23,6 +24,7 @@ public class NotificationController : CustomController
     [HttpPost]
     [Route("force-notifications")]
     [MapToApiVersion(1)]
+    [Authorize]
     public async Task<IActionResult> ForceNotifications()
     {
         _logger.LogInformation("ForceNotifications");

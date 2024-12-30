@@ -45,6 +45,8 @@ internal class SecretManagerService : ISecretManagerService
 
     public async Task<EmailSecrets?> GetEmailSecrets()
         => await GetSecret<EmailSecrets>(_settings.Value.ArnEmailSecrets);
+    public async Task<JwtSecrets?> GetJwtSecrets()
+       => await GetSecret<JwtSecrets>(_settings.Value.ArnJwtSecrets);
 
     private async Task<T?> GetSecret<T>(string arn) where T : ISecret
     {

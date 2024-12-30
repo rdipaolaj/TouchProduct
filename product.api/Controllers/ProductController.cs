@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using product.api.Configuration;
 using product.common.Responses;
@@ -26,6 +27,7 @@ public class ProductController : CustomController
     [HttpPost]
     [MapToApiVersion(1)]
     [Route("create-product")]
+    [Authorize]
     [ProducesResponseType(typeof(ApiResponse<CreateProductResponse>), 200)]
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand request)
     {
@@ -36,6 +38,8 @@ public class ProductController : CustomController
 
     [HttpPut]
     [Route("update-product")]
+    [MapToApiVersion(1)]
+    [Authorize]
     [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
     public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand request)
     {
@@ -45,6 +49,8 @@ public class ProductController : CustomController
     }
 
     [HttpDelete]
+    [MapToApiVersion(1)]
+    [Authorize]
     [Route("delete-product/{id}")]
     [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
     public async Task<IActionResult> DeleteProduct(int id)
@@ -55,6 +61,8 @@ public class ProductController : CustomController
     }
 
     [HttpGet]
+    [MapToApiVersion(1)]
+    [Authorize]
     [Route("list-products")]
     [ProducesResponseType(typeof(ApiResponse<IEnumerable<CreateProductResponse>>), 200)]
     public async Task<IActionResult> ListProducts()
