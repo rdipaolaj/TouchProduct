@@ -8,4 +8,5 @@ public class Product
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
     public string Categoria { get; set; } = string.Empty;
+    public DateTime CreateProduct { get; set; }
 }

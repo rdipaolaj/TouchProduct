@@ -116,8 +116,8 @@ public class ProductService : IProductService
 
     private void DrawTableHeader(XGraphics graphics, XFont headerFont, double yPoint)
     {
-        double[] columnWidths = { 80, 150, 70, 60, 100 };
-        string[] headers = { "Nombre", "Descripción", "Precio", "Cantidad", "Categoría" };
+        double[] columnWidths = { 80, 150, 70, 60, 100, 120 };
+        string[] headers = { "Nombre", "Descripción", "Precio", "Cantidad", "Categoría", "Fecha" };
 
         double xPoint = 20;
         for (int i = 0; i < headers.Length; i++)
@@ -131,20 +131,21 @@ public class ProductService : IProductService
 
     private void DrawProductRow(XGraphics graphics, entities.Product product, XFont contentFont, double yPoint, double pageWidth)
     {
-        double[] columnWidths = { 80, 150, 70, 60, 100 };
+        double[] columnWidths = { 80, 150, 70, 60, 100, 120 };
         string[] values = {
             product.Nombre,
             product.Descripcion,
             $"{product.Precio:C}",
             product.Cantidad.ToString(),
-            product.Categoria
+            product.Categoria,
+            product.CreateProduct.ToString(),
         };
 
         double xPoint = 20;
         for (int i = 0; i < values.Length; i++)
         {
             graphics.DrawRectangle(XPens.Black, xPoint, yPoint, columnWidths[i], 20);
-            graphics.DrawString(TrimTextToFit(values[i], contentFont, columnWidths[i] - 5, graphics),
+            graphics.DrawString(TrimTextToFit(values[i], contentFont, columnWidths[i] - 6, graphics),
                 contentFont, XBrushes.Black,
                 new XRect(xPoint + 2, yPoint + 2, columnWidths[i], 20), XStringFormats.TopLeft);
             xPoint += columnWidths[i];

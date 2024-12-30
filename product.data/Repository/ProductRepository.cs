@@ -133,6 +133,7 @@ public class ProductRepository : IProductRepository
             return await _context.Products
                                  .OrderBy(p => p.Categoria)
                                  .ThenBy(p => p.Nombre)
+                                 .Where(p => p.Cantidad < 5)
                                  .ToListAsync(cancellationToken);
         }
         catch (Exception ex)
