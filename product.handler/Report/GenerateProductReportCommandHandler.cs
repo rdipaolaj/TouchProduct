@@ -4,8 +4,6 @@ using product.application.Product;
 using product.common.Responses;
 using product.dto.Report.v1;
 using product.request.Commands.v1.Report;
-using System.Text;
-using System.Text.Json;
 
 namespace product.handler.Report;
 public class GenerateProductReportCommandHandler : IRequestHandler<GenerateProductReportCommand, ApiResponse<GenerateProductReportResponse>>
