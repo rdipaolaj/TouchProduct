@@ -1,5 +1,8 @@
-﻿namespace product.request.Commands.v1.Product;
-public class UpdateProductCommand
+﻿using MediatR;
+using product.common.Responses;
+
+namespace product.request.Commands.v1.Product;
+public class UpdateProductCommand : IRequest<ApiResponse<bool>>
 {
     public int Id { get; set; }
     public string Nombre { get; set; } = string.Empty;

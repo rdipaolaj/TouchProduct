@@ -5,6 +5,7 @@ using product.api.Configuration;
 using product.common.Responses;
 using product.dto.Product.v1;
 using product.request.Commands.v1.Product;
+using product.request.Querys.v1.Product;
 
 namespace product.api.Controllers;
 
@@ -25,7 +26,6 @@ public class ProductController : CustomController
     [HttpPost]
     [MapToApiVersion(1)]
     [Route("create-product")]
-    [ProducesResponseType(typeof(ApiResponse<CreateProductResponse>), 400)]
     [ProducesResponseType(typeof(ApiResponse<CreateProductResponse>), 200)]
     public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommand request)
     {
@@ -34,4 +34,33 @@ public class ProductController : CustomController
         return OkorBadRequestValidationApiResponse(result);
     }
 
+    [HttpPut]
+    [Route("update-product")]
+    [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+    public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand request)
+    {
+        _logger.LogInformation("UpdateProduct");
+        var result = await _mediator.Send(request);
+        return OkorBadRequestValidationApiResponse(result);
+    }
+
+    [HttpDelete]
+    [Route("delete-product/{id}")]
+    [ProducesResponseType(typeof(ApiResponse<bool>), 200)]
+    public async Task<IActionResult> DeleteProduct(int id)
+    {
+        _logger.LogInformation("DeleteProduct");
+        var result = await _mediator.Send(new DeleteProductCommand { Id = id });
+        return OkorBadRequestValidationApiResponse(result);
+    }
+
+    [HttpGet]
+    [Route("list-products")]
+    [ProducesResponseType(typeof(ApiResponse<IEnumerable<CreateProductResponse>>), 200)]
+    public async Task<IActionResult> ListProducts()
+    {
+        _logger.LogInformation("ListProducts");
+        var result = await _mediator.Send(new ListProductsQuery());
+        return OkorBadRequestValidationApiResponse(result);
+    }
 }

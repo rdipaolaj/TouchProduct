@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Querys\v1\Product\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\product.common\product.common.csproj" />
     <ProjectReference Include="..\product.dto\product.dto.csproj" />
   </ItemGroup>

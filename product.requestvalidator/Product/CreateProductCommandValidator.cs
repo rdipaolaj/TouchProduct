@@ -15,10 +15,12 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .MaximumLength(500).WithMessage("La descripción del producto no debe exceder los 500 caracteres.");
 
         RuleFor(x => x.Precio)
-            .GreaterThan(0).WithMessage("El precio debe ser mayor que 0.");
+            .GreaterThan(0).WithMessage("El precio debe ser mayor que 0.")
+            .Must(precio => precio >= 0).WithMessage("El precio no puede ser negativo.");
 
         RuleFor(x => x.Cantidad)
-            .GreaterThanOrEqualTo(0).WithMessage("La cantidad debe ser mayor o igual a 0.");
+            .GreaterThanOrEqualTo(0).WithMessage("La cantidad debe ser mayor o igual a 0.")
+            .Must(cantidad => cantidad >= 0).WithMessage("La cantidad no puede ser negativa.");
 
         RuleFor(x => x.Categoria)
             .NotEmpty().WithMessage("La categoría del producto es obligatoria.")

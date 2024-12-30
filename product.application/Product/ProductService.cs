@@ -24,4 +24,28 @@ public class ProductService : IProductService
 
         return await _productRepository.CreateProductAsync(newProduct, cancellationToken);
     }
+    public async Task<bool> UpdateProductAsync(UpdateProductCommand command, CancellationToken cancellationToken)
+    {
+        var product = await _productRepository.GetProductByIdAsync(command.Id, cancellationToken);
+        if (product == null) return false;
+
+        product.Nombre = command.Nombre;
+        product.Descripcion = command.Descripcion;
+        product.Precio = command.Precio;
+        product.Cantidad = command.Cantidad;
+        product.Categoria = command.Categoria;
+
+        await _productRepository.UpdateProductAsync(product, cancellationToken);
+        return true;
+    }
+
+    public async Task<bool> DeleteProductAsync(int id, CancellationToken cancellationToken)
+    {
+        return await _productRepository.DeleteProductAsync(id, cancellationToken);
+    }
+
+    public async Task<IEnumerable<entities.Product>> GetProductsAsync(CancellationToken cancellationToken)
+    {
+        return await _productRepository.GetProductsAsync(cancellationToken);
+    }
 }
