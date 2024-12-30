@@ -124,4 +124,21 @@ public class ProductRepository : IProductRepository
             return Enumerable.Empty<Product>();
         }
     }
+
+    public async Task<IEnumerable<Product>> GetProductsForReportAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            _logger.LogInformation($"Fetching products for report in {nameof(GetProductsForReportAsync)}");
+            return await _context.Products
+                                 .OrderBy(p => p.Categoria)
+                                 .ThenBy(p => p.Nombre)
+                                 .ToListAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error in {nameof(GetProductsForReportAsync)}: {ex.Message}");
+            return Enumerable.Empty<Product>();
+        }
+    }
 }

@@ -7,4 +7,5 @@ public interface IProductService
     Task<bool> UpdateProductAsync(UpdateProductCommand command, CancellationToken cancellationToken);
     Task<bool> DeleteProductAsync(int id, CancellationToken cancellationToken);
     Task<IEnumerable<entities.Product>> GetProductsAsync(CancellationToken cancellationToken);
+    Task<byte[]> GenerateProductReportAsync(CancellationToken cancellationToken);
 }
