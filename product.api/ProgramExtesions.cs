@@ -49,6 +49,7 @@ public static class ProgramExtesions
     {
         builder.Services.Configure<RedisSettings>(builder.Configuration.GetSection("RedisSettings"));
         builder.Services.Configure<SecretManagerSettings>(builder.Configuration.GetSection("SecretManagerSettings"));
+        builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 
         return services;
     }
@@ -60,6 +61,7 @@ public static class ProgramExtesions
 
         PostgresDbSecrets secretsPostgres = secretManagerService.GetPostgresDbSecrets().GetAwaiter().GetResult();
         RedisSecrets redisSecrets = secretManagerService.GetRedisSecrets().GetAwaiter().GetResult();
+        EmailSecrets emailSecrets = secretManagerService.GetEmailSecrets().GetAwaiter().GetResult();
 
         services.Configure<PostgresDbSettings>(options =>
         {
@@ -69,10 +71,13 @@ public static class ProgramExtesions
             options.Port = secretsPostgres.Port;
             options.Dbname = secretsPostgres.Dbname;
         });
-
         services.Configure<RedisKeySettings>(options =>
         {
             options.PrivateKey = redisSecrets.PrivateKey;
+        });
+        services.Configure<EmailSettings>(options =>
+        {
+            options.EmailKey = emailSecrets.EmailKey;
         });
 
         return services;

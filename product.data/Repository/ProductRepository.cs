@@ -108,4 +108,20 @@ public class ProductRepository : IProductRepository
             return null;
         }
     }
+
+    public async Task<IEnumerable<Product>> GetLowStockProductsAsync(int threshold, CancellationToken cancellationToken)
+    {
+        try
+        {
+            _logger.LogInformation($"Getting products with inventory below {threshold} in {nameof(GetLowStockProductsAsync)}");
+            return await _context.Products
+                                 .Where(p => p.Cantidad < threshold)
+                                 .ToListAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error in {nameof(GetLowStockProductsAsync)}: {ex.Message}");
+            return Enumerable.Empty<Product>();
+        }
+    }
 }

@@ -43,6 +43,9 @@ internal class SecretManagerService : ISecretManagerService
     public async Task<RedisSecrets?> GetRedisSecrets()
         => await GetSecret<RedisSecrets>(_settings.Value.ArnRedisSecrets);
 
+    public async Task<EmailSecrets?> GetEmailSecrets()
+        => await GetSecret<EmailSecrets>(_settings.Value.ArnEmailSecrets);
+
     private async Task<T?> GetSecret<T>(string arn) where T : ISecret
     {
         T? result = default;

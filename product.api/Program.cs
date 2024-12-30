@@ -20,6 +20,7 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddCustomServicesConfiguration();
 builder.Services.AddSecretsConfiguration(builder);
+builder.Services.AddCustomApplicationServicesConfiguration();
 builder.Services.AddDatabaseHealthCheck();
 builder.Services.AddMapsterConfiguration();
 builder.Services.AddApiVersioningConfiguration();

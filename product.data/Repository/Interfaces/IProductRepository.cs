@@ -8,4 +8,5 @@ public interface IProductRepository
     Task<Product?> CreateProductAsync(Product product, CancellationToken cancellationToken);
     Task<Product?> UpdateProductAsync(Product product, CancellationToken cancellationToken);
     Task<bool> DeleteProductAsync(int id, CancellationToken cancellationToken);
+    Task<IEnumerable<Product>> GetLowStockProductsAsync(int threshold, CancellationToken cancellationToken);
 }

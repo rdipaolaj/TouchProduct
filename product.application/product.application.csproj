@@ -14,6 +14,7 @@
     <ProjectReference Include="..\product.common\product.common.csproj" />
     <ProjectReference Include="..\product.data\product.data.csproj" />
     <ProjectReference Include="..\product.entities\product.entities.csproj" />
+    <ProjectReference Include="..\product.internalservices\product.internalservices.csproj" />
     <ProjectReference Include="..\product.request\product.request.csproj" />
   </ItemGroup>
 

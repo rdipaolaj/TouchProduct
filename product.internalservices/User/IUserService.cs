@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using product.common.Responses;
 
 namespace product.internalservices.User;
-internal interface IUserService
+public interface IUserService
 {
+    Task<ApiResponse<IEnumerable<string>>> GetAdminEmailsAsync(CancellationToken cancellationToken);
 }
